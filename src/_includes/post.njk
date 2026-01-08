@@ -1,0 +1,39 @@
+---
+layout: base.njk
+---
+
+<article>
+  <h2>{{ title }}</h2>
+  <p class="muted">{{ page.date | readableDate }}</p>
+
+  {{ content | safe }}
+
+  {% if tags %}
+    <p class="muted">
+      Tags:
+      {%- set tagsArr = tags | list -%}
+      {%- for t in tagsArr -%}
+        {%- if t != "posts" and t != "post" and t != "all" and t != "nav" -%}
+          <a href="/tags/{{ t | slugify }}/">{{ t }}</a>{% if not loop.last %}, {% endif %}
+        {%- endif -%}
+      {%- endfor -%}
+    </p>
+  {% endif %}
+
+  {# Previous/Next based on the posts collection #}
+  {% set prevPost = collections.posts | getPreviousCollectionItem(page) %}
+  {% set nextPost = collections.posts | getNextCollectionItem(page) %}
+
+  <nav class="pager" aria-label="Post navigation">
+    <div>
+      {% if nextPost %}
+        <a href="{{ nextPost.url }}" aria-label="Next post">← {{ nextPost.data.title }}</a>
+      {% endif %}
+    </div>
+    <div>
+      {% if prevPost %}
+        <a href="{{ prevPost.url }}" aria-label="Previous post">{{ prevPost.data.title }} →</a>
+      {% endif %}
+    </div>
+  </nav>
+</article>

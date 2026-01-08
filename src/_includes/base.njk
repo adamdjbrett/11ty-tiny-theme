@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }} | {{ site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% if description %}<meta name="description" content="{{ description | escape }}">{% endif %}
+
+  <style>
+    body {
+      margin: 5% auto;
+      background: #f2f2f2;
+      color: #444444;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      text-shadow: 0 1px 0 #ffffff;
+      max-width: 73%;
+    }
+    code { background: white; }
+    a {
+      border-bottom: 1px solid #444444;
+      color: #444444;
+      text-decoration: none;
+    }
+    a:hover { border-bottom: 0; }
+    header nav a { margin-right: 0.75rem; }
+    .muted { opacity: 0.85; }
+    .pager {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .pager a { border-bottom: 0; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>{{ site.title }}</h1>
+  <aside class="muted">{{ site.description }}</aside>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+    <a href="/tags/">Tags</a>
+    <a href="/feed.xml">RSS</a>
+  </nav>
+</header>
+
+<main>
+  {{ content | safe }}
+</main>
+
+<footer>
+  <hr>
+  <p><strong>{{ site.title }}</strong> · Built with Eleventy</p>
+</footer>
+
+</body>
+</html>

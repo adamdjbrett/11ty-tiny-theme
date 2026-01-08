@@ -1,0 +1,12 @@
+---
+title: Tags
+layout: base.njk
+---
+
+<h2>Tags</h2>
+
+<ul>
+{% for tag in collections.tagList %}
+  <li><a href="/tags/{{ tag | slugify }}/">{{ tag }}</a></li>
+{% endfor %}
+</ul>
